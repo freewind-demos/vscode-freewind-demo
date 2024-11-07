@@ -1,0 +1,66 @@
+{
+  "name": "freewind-demo",
+  "displayName": "Freewind Demo",
+  "version": "0.0.1",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "pnpm run build",
+    "build": "vite build",
+    "watch": "vite build --watch",
+    "pretest": "pnpm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rimraf out *.vsix",
+    "prebuild": "pnpm run clean",
+    "prepackage": "pnpm run clean && pnpm run build && pnpm run test",
+    "package": "vsce package --no-dependencies",
+    "vsix": "pnpm run build && pnpm run package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^14.x.x",
+    "typescript": "^4.x.x",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0",
+    "@vscode/vsce": "^2.24.0",
+    "rimraf": "^5.0.5"
+  },
+  "activationEvents": [
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "freewindDemo.hello",
+        "title": "click to say hello",
+        "icon": "$(bell)"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "freewindDemo",
+          "name": "Freewind Demo"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "freewindDemo.hello",
+          "when": "view == freewindDemo",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "packageManager": "pnpm@8.6.12+sha512.1336b80b948efd7979218a33ba96d9e4d380e6578144f6319979977deec6e3fe2e0a444b864b3ce2b077dda8adc4d654fee32b9c31868f0acb92da0abcf8ea1c",
+  "publisher": "freewind",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freewind-demos/vscode-freewind-demo.git"
+  }
+}
